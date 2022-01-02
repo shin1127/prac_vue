@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>じゃんけん</h1>
+    <div id="app">
+
+
+        <!-- <option v-for="item in hands" value="a">{{ item.name }}</option> -->
+        <!-- <input v-for="item in hands" type="radio" name="名前" value="値1">{{ item.name }} -->
+        <!-- <label><input type="radio" value="a" v-model="hands">{{item.name}}</label> -->
+
+        <p>相手はグーです</p>
+
+        <label><input type="radio" value="gu" v-model="result">gu</label>
+        <label><input type="radio" value="choki" v-model="result">choki</label>
+        <label><input type="radio" value="pa" v-model="result">pa</label>
+        <p>あなたがえらんだのは {{ result }}</p>
+
+        <p>手を決定</p>
+        <button v-on="click">ボタン</button>
+
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
