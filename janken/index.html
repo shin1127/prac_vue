@@ -15,7 +15,7 @@
         <!-- <input v-for="item in hands" type="radio" name="名前" value="値1">{{ item.name }} -->
         <!-- <label><input type="radio" value="a" v-model="hands">{{item.name}}</label> -->
 
-        <p>相手はグーです</p>
+        <p>相手は{{enemyHand}}ですよ</p>
 
         <label><input type="radio" value="gu" v-model="result">gu</label>
         <label><input type="radio" value="choki" v-model="result">choki</label>
@@ -23,7 +23,9 @@
         <p>あなたがえらんだのは {{ result }}</p>
 
         <p>手を決定</p>
-        <button v-on="click">ボタン</button>
+        <button v-on:click="click">ボタン</button>
+
+        <p>{{ result2 }}</p>
 
 
 

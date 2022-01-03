@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="order=!order">切り替え</button>
+        <button v-on:click="changeShow">一部を可視化/不可視化</button>
+
+        <transition-group tag="ul" class="list">
+
+            <span v-for="item in sortedList" v-show="item.show" v-bind:key="item.id">
+                <div>{{ item.name }}</div>
+            </span>
+        </transition-group>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
