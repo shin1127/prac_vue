@@ -36,12 +36,6 @@ var app = new Vue({
             blankIndex = 0
             clickedObjectIndex = 0
             clickedObjectId = event.target.getAttribute("id")
-
-            // console.log("objectId is " + clickedObjectId)
-
-            // console.log(event.target.getAttribute("id"))
-
-
             for (let i = 0; i < this.list.length; i++) {
                 // console.log("current thisList.id is " + this.list[i].id)
 
@@ -61,15 +55,8 @@ var app = new Vue({
             }
 
             if (!isAllowedToChange(blankIndex, clickedObjectIndex)) {
-                console.log("交換可能対象ではない")
                 return
             }
-            console.log("交換可能対象である")
-
-
-
-            // console.log("blankIndex is " + blankIndex)
-            // console.log("clickedObjIndex is " + clickedObjectIndex)
 
             // blankとクリックされたオブジェクトを交換する
             const temp = this.list[blankIndex]
@@ -77,7 +64,6 @@ var app = new Vue({
             this.$set(this.list, blankIndex, this.list[clickedObjectIndex])
             this.$set(this.list, clickedObjectIndex, temp)
 
-            console.log("debug")
             for (i of this.list) {
                 console.log(i.name)
             }
@@ -94,14 +80,10 @@ var app = new Vue({
                 let changing2 = getRandomInt(this.list.length - 1)
                 while (!isAllowedToChange(blankIndex, changing2)) {
                     changing2 = getRandomInt(this.list.length - 1)
-                    console.log(blankIndex + " and " + changing2 + " sort")
-
                 }
-                console.log("finally" + blankIndex + " and " + changing2 + " sort")
                 let temp = this.list[blankIndex]
                 this.$set(this.list, blankIndex, this.list[changing2])
                 this.$set(this.list, changing2, temp)
-
             }
         }
     },
