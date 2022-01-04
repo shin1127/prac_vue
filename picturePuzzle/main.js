@@ -19,29 +19,31 @@ var app = new Vue({
         ],
     },
     methods: {
-        swapNum: function (test) {
-            console.log(test.target)
-            // クリックされた文字列の属性を取り出す
-            console.log(test.target.getAttribute("id"))
-            for (i of this.list) {
-                console.log(i.name)
-            }
-            temp = this.list[0]
-            // this.list[0] = this.list[1]
-            // this.list[1] = temp
-            this.$set(this.list, 0, this.list[1])
-            this.$set(this.list, 1, temp)
-        },
+        // swapNum: function (test) {
+        //     console.log(test.target)
+        //     // クリックされた文字列の属性を取り出す
+        //     console.log(test.target.getAttribute("id"))
+        //     for (i of this.list) {
+        //         console.log(i.name)
+        //     }
+        //     temp = this.list[0]
+        //     // this.list[0] = this.list[1]
+        //     // this.list[1] = temp
+        //     this.$set(this.list, 0, this.list[1])
+        //     this.$set(this.list, 1, temp)
+        // },
         swapNum2: function (event) {
             blankIndex = 0
             clickedObjectIndex = 0
             clickedObjectId = event.target.getAttribute("id")
 
-            console.log("objectId is " + clickedObjectId)
+            // console.log("objectId is " + clickedObjectId)
 
-            console.log(event.target.getAttribute("id"))
+            // console.log(event.target.getAttribute("id"))
+
+
             for (let i = 0; i < this.list.length; i++) {
-                console.log("current thisList.id is " + this.list[i].id)
+                // console.log("current thisList.id is " + this.list[i].id)
 
                 if (this.list[i].show === false) {
                     blankIndex = i;
@@ -58,8 +60,17 @@ var app = new Vue({
                 }
             }
 
-            console.log("blankIndex is " + blankIndex)
-            console.log("clickedObjIndex is " + clickedObjectIndex)
+            // 交換可能か判断する
+            if (!isAllowedToChange(blankIndex, clickedObjectIndex)) {
+                console.log("交換可能対象ではない")
+                return
+            }
+            console.log("交換可能対象である")
+
+
+
+            // console.log("blankIndex is " + blankIndex)
+            // console.log("clickedObjIndex is " + clickedObjectIndex)
 
             // blankとクリックされたオブジェクトを交換する
             temp = this.list[blankIndex]
@@ -81,4 +92,42 @@ var app = new Vue({
     }
 })
 
+isAllowedToChange = function (blank, b) {
+    // blankの座標a, 交換したい座標bの位置が次のとき、交換できる
+    blank += 1
+    b += 1
+    list = [blank - 1, blank + 1, blank - 3, blank + 3]
+    if (!list.includes(b)) {
+        console.log("上下左右ではない")
+        return false
+    }
 
+    // return true
+
+    if (blank % 3 == 0) {
+        if (blank + 1 == b) {
+            console.log('1')
+            return false
+        }
+    }
+    if (blank % 3 == 1) {
+        if (blank - 1 == b) {
+            console.log('2')
+            return false
+        }
+    }
+    if (blank <= 3) {
+        if (blank - 3 == b) {
+            console.log('3')
+            return false
+        }
+        if (blank >= 7) {
+            if (blank - 3 == b) {
+                console.log('4')
+                return false
+            }
+        }
+    }
+    return true
+    // return trueを忘れるとundifinedが返る
+}
