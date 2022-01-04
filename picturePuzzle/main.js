@@ -82,25 +82,27 @@ var app = new Vue({
                 console.log(i.name)
             }
         },
-        unsort: function () {
-
-            let blankIndex = 0;
-            for (let i = 0; i < this.list.length; i++) {
-                if (this.list[i].show === false) {
-                    blankIndex = i
-                    break
+        unsort: function (times) {
+            for (let t = 0; t < times; t++) {
+                let blankIndex = 0;
+                for (let i = 0; i < this.list.length; i++) {
+                    if (this.list[i].show === false) {
+                        blankIndex = i
+                        break
+                    }
                 }
-            }
-            let changing2 = getRandomInt(this.list.length - 1)
-            while (!isAllowedToChange(blankIndex, changing2)) {
-                changing2 = getRandomInt(this.list.length - 1)
-                console.log(blankIndex + " and " + changing2 + " sort")
+                let changing2 = getRandomInt(this.list.length - 1)
+                while (!isAllowedToChange(blankIndex, changing2)) {
+                    changing2 = getRandomInt(this.list.length - 1)
+                    console.log(blankIndex + " and " + changing2 + " sort")
+
+                }
+                console.log("finally" + blankIndex + " and " + changing2 + " sort")
+                let temp = this.list[blankIndex]
+                this.$set(this.list, blankIndex, this.list[changing2])
+                this.$set(this.list, changing2, temp)
 
             }
-            console.log("finally" + blankIndex + " and " + changing2 + " sort")
-            let temp = this.list[blankIndex]
-            this.$set(this.list, blankIndex, this.list[changing2])
-            this.$set(this.list, changing2, temp)
         }
     },
     computed: {
