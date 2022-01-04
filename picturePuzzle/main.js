@@ -60,7 +60,6 @@ var app = new Vue({
                 }
             }
 
-            // 交換可能か判断する
             if (!isAllowedToChange(blankIndex, clickedObjectIndex)) {
                 console.log("交換可能対象ではない")
                 return
@@ -73,7 +72,7 @@ var app = new Vue({
             // console.log("clickedObjIndex is " + clickedObjectIndex)
 
             // blankとクリックされたオブジェクトを交換する
-            temp = this.list[blankIndex]
+            const temp = this.list[blankIndex]
 
             this.$set(this.list, blankIndex, this.list[clickedObjectIndex])
             this.$set(this.list, clickedObjectIndex, temp)
@@ -82,11 +81,30 @@ var app = new Vue({
             for (i of this.list) {
                 console.log(i.name)
             }
+        },
+        unsort: function () {
+
+            let blankIndex = 0;
+            for (let i = 0; i < this.list.length; i++) {
+                if (this.list[i].show === false) {
+                    blankIndex = i
+                    break
+                }
+            }
+            let changing2 = getRandomInt(this.list.length - 1)
+            while (!isAllowedToChange(blankIndex, changing2)) {
+                changing2 = getRandomInt(this.list.length - 1)
+                console.log(blankIndex + " and " + changing2 + " sort")
+
+            }
+            console.log("finally" + blankIndex + " and " + changing2 + " sort")
+            let temp = this.list[blankIndex]
+            this.$set(this.list, blankIndex, this.list[changing2])
+            this.$set(this.list, changing2, temp)
         }
     },
     computed: {
         sortedList: function () {
-            // return _.orderBy(this.list, "id", this.order ? "desc" : "asc")
             return this.list
         },
     }
@@ -131,3 +149,26 @@ isAllowedToChange = function (blank, b) {
     return true
     // return trueを忘れるとundifinedが返る
 }
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+// function getBlankIndex() {
+//     for (let i = 0; i < this.list.length; i++) {
+//         // console.log("current thisList.id is " + this.list[i].id)
+
+//         if (this.list[i].show === false) {
+//             blankIndex = i;
+//             break;
+//         }
+//         // if (this.list[i].id === clickedObjectId) {
+//         // 　this.list[i].idはnumber型として扱われてる
+//         // 　clickedObjectIdはstring型として扱われてる
+//         // 　このため、===で比較するとfalseが返る
+//         // console.log(typeof this.list[i].id)
+//         // console.log(typeof clickedObjectId)
+//     }
+//     return blankIndex;
+
+// }
