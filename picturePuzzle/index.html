@@ -12,7 +12,7 @@
         <transition-group tag="ul" class="list">
 
             <span v-for="item in sortedList" v-bind:key="item.id">
-                <div v-on:click="swapNum" v-bind:id="item.id">{{ item.name }}</div>
+                <div v-on:click="swapNum2" v-bind:id="item.id">{{ item.name }}</div>
                 <!-- <button v-on:click="swapNum">{{ item.name }}</button> -->
             </span>
         </transition-group>
