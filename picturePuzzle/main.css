@@ -1,3 +1,10 @@
+body{
+  background-color: #9DEB6E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* 以下はボックス要素のスタイル */
 .list {
     /* width: 80px; */
@@ -27,6 +34,9 @@ img{
 
 #app{
   font-size: 150px;
+  margin-right: auto;
+  margin-left: auto;
+
 }
 
 
