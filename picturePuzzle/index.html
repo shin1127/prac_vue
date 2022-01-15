@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
+    <div>
+        <h1>15puzzle</h1>
+    </div>
+    
     <div id="app">
-        <button v-on:click="unsort(1)">1手入れ替える</button>
-        <button v-on:click="unsort(5)">5手入れ替える</button>
+        <div class="buttons">
+            <button v-on:click="unsort(1)">1手入れ替える</button>
+            <button v-on:click="unsort(5)">5手入れ替える</button>
+        </div>
 
-        <transition-group tag="ul" class="list">
+        <transition-group tag="ul" class="pannels">
 
-            <span v-for="item in sortedList" v-bind:key="item.id" class="block">
-                <!-- <div v-on:click="swapNum2" v-bind:id="item.id">{{ item.name }}</div> -->
+            <span v-for="item in sortedList" v-bind:key="item.id" class="pannel">
                 <img v-bind:src="item.imgName" v-on:click="swapNum2" v-bind:id="item.id">
-                <!-- <button v-on:click="swapNum">{{ item.name }}</button> -->
             </span>
         </transition-group>
 
