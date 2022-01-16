@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html lang="ja"></html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>15puzzle</title>
     <link rel="stylesheet" href="main.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +20,18 @@
     
     <div id="app">
         <div class="buttons">
-            <button v-on:click="unsort(1)">1手入れ替える</button>
-            <button v-on:click="unsort(5)">5手入れ替える</button>
+            <div class="newGame">
+                <h2>NEW GAMES</h2>
+            </div>
+            <button v-on:click="unsort(5)">EASY</button>
+            <button v-on:click="unsort(30)">HARD</button>
+            <button v-on:click="resetList()">RESET</button>
         </div>
 
         <transition-group tag="ul" class="pannels">
 
             <span v-for="item in sortedList" v-bind:key="item.id" class="pannel">
-                <img v-bind:src="item.imgName" v-on:click="swapNum2" v-bind:id="item.id">
+                <img v-bind:src="item.imgName" v-on:click="swapNum" v-bind:id="item.id">
             </span>
         </transition-group>
 

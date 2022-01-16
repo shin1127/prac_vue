@@ -3,51 +3,27 @@ var app = new Vue({
     data: {
         order: false,
         list: [
-            // { id: 1, name: "ringo", price: 100 },
-
-            // { id: 2, name: "banana", price: 200 },
-            // { id: 3, name: "itigo", price: 300 }]
-            { id: 1, name: "あ", show: true, imgName: "flower_1.jpg" },
-            { id: 2, name: "　", show: true, imgName: "flower_2.jpg" },
-            { id: 3, name: "い", show: true, imgName: "flower_3.jpg" },
-            { id: 4, name: "う", show: true, imgName: "flower_4.jpg" },
-            { id: 5, name: "え", show: true, imgName: "flower_5.jpg" },
-            { id: 6, name: "お", show: true, imgName: "flower_6.jpg" },
-            { id: 7, name: "か", show: true, imgName: "flower_7.jpg" },
-            { id: 8, name: "き", show: true, imgName: "flower_8.jpg" },
-            { id: 9, name: "く", show: false, imgName: "blank.png" },
+            { id: 1, show: true, imgName: "flower_1.jpg" },
+            { id: 2, show: true, imgName: "flower_2.jpg" },
+            { id: 3, show: true, imgName: "flower_3.jpg" },
+            { id: 4, show: true, imgName: "flower_4.jpg" },
+            { id: 5, show: true, imgName: "flower_5.jpg" },
+            { id: 6, show: true, imgName: "flower_6.jpg" },
+            { id: 7, show: true, imgName: "flower_7.jpg" },
+            { id: 8, show: true, imgName: "flower_8.jpg" },
+            { id: 9, show: false, imgName: "blank.png" },
         ],
     },
     methods: {
-        // swapNum: function (test) {
-        //     console.log(test.target)
-        //     // クリックされた文字列の属性を取り出す
-        //     console.log(test.target.getAttribute("id"))
-        //     for (i of this.list) {
-        //         console.log(i.name)
-        //     }
-        //     temp = this.list[0]
-        //     // this.list[0] = this.list[1]
-        //     // this.list[1] = temp
-        //     this.$set(this.list, 0, this.list[1])
-        //     this.$set(this.list, 1, temp)
-        // },
-        swapNum2: function (event) {
+        swapNum: function (event) {
             blankIndex = 0
             clickedObjectIndex = 0
             clickedObjectId = event.target.getAttribute("id")
             for (let i = 0; i < this.list.length; i++) {
-                // console.log("current thisList.id is " + this.list[i].id)
 
                 if (this.list[i].show === false) {
                     blankIndex = i;
                 }
-                // if (this.list[i].id === clickedObjectId) {
-                // 　this.list[i].idはnumber型として扱われてる
-                // 　clickedObjectIdはstring型として扱われてる
-                // 　このため、===で比較するとfalseが返る
-                // console.log(typeof this.list[i].id)
-                // console.log(typeof clickedObjectId)
 
                 if (this.list[i].id == clickedObjectId) {
                     clickedObjectIndex = i
@@ -85,6 +61,13 @@ var app = new Vue({
                 this.$set(this.list, blankIndex, this.list[changing2])
                 this.$set(this.list, changing2, temp)
             }
+        },
+        resetList: function () {
+            this.list.sort(function (a, b) {
+                if (a.id < b.id) return -1
+                if (b.id < a.id) return 1
+            })
+            console.log(this.list)
         }
     },
     computed: {
@@ -100,12 +83,8 @@ isAllowedToChange = function (blank, b) {
     b += 1
     list = [blank - 1, blank + 1, blank - 3, blank + 3]
     if (!list.includes(b)) {
-        console.log("上下左右ではない")
         return false
     }
-
-    // return true
-
     if (blank % 3 == 0) {
         if (blank + 1 == b) {
             console.log('1')
@@ -131,28 +110,8 @@ isAllowedToChange = function (blank, b) {
         }
     }
     return true
-    // return trueを忘れるとundifinedが返る
 }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
-// function getBlankIndex() {
-//     for (let i = 0; i < this.list.length; i++) {
-//         // console.log("current thisList.id is " + this.list[i].id)
-
-//         if (this.list[i].show === false) {
-//             blankIndex = i;
-//             break;
-//         }
-//         // if (this.list[i].id === clickedObjectId) {
-//         // 　this.list[i].idはnumber型として扱われてる
-//         // 　clickedObjectIdはstring型として扱われてる
-//         // 　このため、===で比較するとfalseが返る
-//         // console.log(typeof this.list[i].id)
-//         // console.log(typeof clickedObjectId)
-//     }
-//     return blankIndex;
-
-// }
