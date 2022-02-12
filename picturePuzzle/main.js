@@ -20,20 +20,16 @@ var app = new Vue({
             clickedObjectIndex = 0
             clickedObjectId = event.target.getAttribute("id")
             for (let i = 0; i < this.list.length; i++) {
-
                 if (this.list[i].show === false) {
                     blankIndex = i;
                 }
-
                 if (this.list[i].id == clickedObjectId) {
                     clickedObjectIndex = i
                 }
             }
-
             if (!isAllowedToChange(blankIndex, clickedObjectIndex)) {
                 return
             }
-
             // blankとクリックされたオブジェクトを交換する
             const temp = this.list[blankIndex]
 
@@ -87,24 +83,20 @@ isAllowedToChange = function (blank, b) {
     }
     if (blank % 3 == 0) {
         if (blank + 1 == b) {
-            console.log('1')
             return false
         }
     }
     if (blank % 3 == 1) {
         if (blank - 1 == b) {
-            console.log('2')
             return false
         }
     }
     if (blank <= 3) {
         if (blank - 3 == b) {
-            console.log('3')
             return false
         }
         if (blank >= 7) {
             if (blank - 3 == b) {
-                console.log('4')
                 return false
             }
         }

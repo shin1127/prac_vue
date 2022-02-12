@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div id="app">
+        <p>
+        <button v-on:click="showAll">show all</button>
+        <button v-on:click="hideAll">hide all</button>
+        <button v-on:click="hasAttribute('at1')">showAt1</button>
+        <button v-on:click="hasAttribute('at2')">showAt2</button>
+        <button v-on:click="hasAttribute('at3')">showAt3</button>
+        </p>
+
+        <transition-group tag="ul" class="list">
+        <li v-for="(item, index) in list"
+            v-bind:key="item.id"
+            class="item"
+            v-if="item.show">
+            {{ item.id }} {{ item.msg }}
+            <br><br>
+            <div v-for="attribute in item.attributes"
+            v-on:click="getEvent()">{{ attribute }}<br><br></div>
+        </li>
+        </transition-group>
+    </div>
+
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
