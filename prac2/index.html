@@ -8,14 +8,23 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <h1>写真のリスト</h1>
 
     <div id="app">
         <p>
-        <button v-on:click="showAll">show all</button>
-        <button v-on:click="hideAll">hide all</button>
-        <button v-on:click="hasAttribute('at1')">showAt1</button>
-        <button v-on:click="hasAttribute('at2')">showAt2</button>
-        <button v-on:click="hasAttribute('at3')">showAt3</button>
+        <span v-for="button in selected" v-bind:key="button.id">
+        
+        <!-- <button v-on-click="showChangeAttribute(button.attribute)">show {{button.attribute}}</button> -->
+        <button v-on:click="showChangeAttribute(button.attribute);changeSelected(button.attribute)" v-bind:class="{ buttonSelected : button.selected }">show {{button.attribute}}</button>
+        </span>
+        <br>
+
+
+        <button v-on:click="showAll()">show all</button>
+        <button v-on:click="hideAll()">hide all</button>
+        <!-- <button v-on:click="showChangeAttribute('家')">show家</button>
+        <button v-on:click="showChangeAttribute('鳥')">show鳥</button>
+        <button v-on:click="showChangeAttribute('動物')">show動物</button> -->
         </p>
 
         <transition-group tag="ul" class="list">
@@ -23,10 +32,13 @@
             v-bind:key="item.id"
             class="item"
             v-if="item.show">
-            {{ item.id }} {{ item.msg }}
-            <br><br>
-            <div v-for="attribute in item.attributes"
-            v-on:click="getEvent()">{{ attribute }}<br><br></div>
+            
+            <img v-bind:src="item.picpath" v-bind:id="item.id" class="message">
+            {{ item.msg }}
+            <div class="atts">
+                <span v-for="attribute in item.attributes"
+                v-on:click="showChangeAttribute(attribute)" class="picAtt">{{ attribute }}</span>
+            </div>
         </li>
         </transition-group>
     </div>
